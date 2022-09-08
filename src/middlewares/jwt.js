@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const UserRepository = require("../repositories/impl/MongoDBUserRepository")
 
 //defines the public routes list of the app
 const publicRoutes = [
@@ -65,7 +66,7 @@ module.exports = (req, res, next) => {
     }
 
     //verify if the token is valid and was generated using our secret key
-    jwt.verify(token, process.env.SECRET_KEY_JWT, (error, decoded) => {
+    jwt.verify(token, process.env.SECRET_KEY_JWT, async (error, decoded) => {
         if (error) {
             req.logger.error("Failure to decode the access token.", `token=${token}`);
             return res.status(401).json({
@@ -76,8 +77,13 @@ module.exports = (req, res, next) => {
 
         req.logger.debug("token jwt decodificado", `idUser=${decoded._id}`);
         //TODO:  load users from the database
-        const user = {
-            id: decoded._id
+        const user = await UserRepository.searchById(decoded._id);
+        if (!user) {
+            req.logger.error("User not found in the database.", `id=${decoded._id}`);
+            return res.status(401).json({
+                status: 401,
+                error: "access denied, user not found"
+            });
         }
 
         //gives the propertie user from the request to the authenticated user

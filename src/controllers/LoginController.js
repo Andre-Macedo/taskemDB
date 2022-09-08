@@ -13,7 +13,7 @@ class LoginController extends HttpController {
     async login(req, res) {
         try {
             //changes the request body to a variable body
-            var body = req.body;
+            const body = req.body;
 
             //validates if the login and password fields were passed on the body
             if (!body || !body.login || !body.password) {
@@ -26,9 +26,9 @@ class LoginController extends HttpController {
             }
 
             const service = new LoginService();
-            const result = service.login(body.login, body.password);
+            const result = await service.login(body.login, body.password);
             if (!result) {
-                res.status(400).json({
+                return res.status(400).json({
                     error: "Username or password invalid",
                     status: 400
                 })

@@ -10,5 +10,9 @@ module.exports = (implementation) => {
         throw new Error(`The class ${implementation} didnt implement the method filter`)
     }
 
+    if (!implementation.searchById) {
+        throw new Error(`The class ${implementation} didnt implement the method searchById`)
+    }
+
     return implementation;
 }

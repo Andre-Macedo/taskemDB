@@ -12,11 +12,7 @@ class LoginService {
         let user = null;
         const users = await UserRepository.filter(filtro);
         if (users && users.length) {
-            user = {
-                id: users[0]._doc._id,
-                name: users[0]._doc.name,
-                email: users[0]._doc.email
-            }
+            user = users[0]
         } else {
             return null;
         }
