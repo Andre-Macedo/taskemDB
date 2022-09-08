@@ -1,0 +1,150 @@
+{
+    "swagger": "2.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Char creation app DB"
+    },
+    "basePath": "/api",
+    "consumes": [
+        "application/json"
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "summary": "Authenticates login info and gives access token",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/LoginResponse200"
+                        }
+                    },
+                    "400": {
+                        "schema": {
+                            "$ref": "#/definitions/ResponseErro"
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "post": {
+                "summary": "Register user in the system",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RegisterUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/RegisterUserResponse200"
+                        }
+                    },
+                    "400": {
+                        "schema": {
+                            "$ref": "#/definitions/ResponseErro"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "LoginRequest": {
+            "type": "object",
+            "properties": {
+                "login": {
+                    "type": "string",
+                    "example": "email@email.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "1234"
+                }
+            }
+        },
+        "LoginResponse200": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "example": "John Smith"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "email@email.com"
+                },
+                "token": {
+                    "type": "string",
+                    "example": ""
+                }
+            }
+        },
+        "RegisterUserRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "John Smith"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "email@email.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "1234"
+                }
+            }
+        },
+        "RegisterUserResponse200": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "John Smith"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "email@email.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "1234"
+                }
+            }
+        },
+        "ResponseErro": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "number",
+                    "example": "400"
+                },
+                "erro": {
+                    "type": "string",
+                    "example": "Error"
+                }
+            }
+        }
+    }
+}

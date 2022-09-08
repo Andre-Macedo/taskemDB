@@ -1,0 +1,20 @@
+{
+  "name": "chardb",
+  "version": "1.0.0",
+  "description": "DB for the char creation app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Andre M",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "16.0.2",
+    "express": "4.18.1",
+    "jsonwebtoken": "8.5.1",
+    "swagger-ui-express": "4.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.19"
+  }
+}
