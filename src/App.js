@@ -2,8 +2,9 @@ const express = require("express");
 const LoginController = require("./controllers/LoginController");
 const UserController = require("./controllers/UserController")
 const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("./swagger/swagger.json")
-const AppConstants = require("./enum/AppConstants")
+const swaggerFile = require("./swagger/swagger.json");
+const AppConstants = require("./enum/AppConstants");
+const MongoDBConnectionHelper = require("./helper/MongoDBConnectionHelper")
 
 const logger = require("./middlewares/logger")
 const jwt = require("./middlewares/jwt")
@@ -15,6 +16,8 @@ class App {
     start() {
         //config express
         this.#configExpress();
+        //config the connection with dbs
+        this.#configDatabases();
         //load controllers
         this.#loadControllers();
         //init server
@@ -46,6 +49,11 @@ class App {
 
 
     };
+
+    #configDatabases() {
+        MongoDBConnectionHelper.conectar();
+    };
+
 
     #loadControllers() {
         //gives the propriety #controllers the list of constrollers available in the app
