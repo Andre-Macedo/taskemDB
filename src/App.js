@@ -9,6 +9,7 @@ const MongoDBConnectionHelper = require("./helper/MongoDBConnectionHelper")
 
 const logger = require("./middlewares/logger")
 const jwt = require("./middlewares/jwt")
+const cors = require('./middlewares/cors');
 
 
 class App {
@@ -37,6 +38,9 @@ class App {
         //registers the middlewares to convert the api requests
         this.express.use(express.urlencoded({ extended: true }));
         this.express.use(express.json());
+
+        // registers the middleware to enable requests from other domains
+        this.express.use(cors);
 
         //register the middleware jwt to make the validation to access the routes
         this.express.use(jwt)

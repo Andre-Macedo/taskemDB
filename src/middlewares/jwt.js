@@ -32,11 +32,10 @@ module.exports = (req, res, next) => {
                 && urlRequestHasPartOfThePublicRoute
             )
         )
-            && route.method === req.method.toUpperCase()
-    }
+            && (route.method === req.method.toUpperCase())
+    });
 
-    );
-    if (publicRoute) {
+    if (publicRoute || req.method.toUpperCase() === 'OPTIONS') {
         req.logger.info("public route, access cleared")
 
         return next();
