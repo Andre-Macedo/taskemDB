@@ -1,28 +1,28 @@
-const UserRepository = require("../repositories/impl/MongoDBUserRepository")
+const UserRepository = require('../repositories/impl/MongoDBUserRepository')
 
 class UserService {
     async register(userData) {
         const listErrors = [];
 
         if (!userData.name || !userData.name.toString().trim()) {
-            listErrors.push("Username invalid")
+            listErrors.push('Username invalid')
         } else {
             const parsedName = parseInt(userData.name);
             const isANumber = !Number.isNaN(parsedName);
             if (isANumber) {
-                listErrors.push("Invalid Username")
+                listErrors.push('Invalid Username')
             }
         }
 
 
         if (!userData.email || !userData.email.toString().trim()) {
-            listErrors.push("Email invalid");
+            listErrors.push('Email invalid');
         } else {
-            const hasAt = userData.email.indexOf("@") !== -1;
-            const hasDot = userData.email.indexOf(".") !== -1;
+            const hasAt = userData.email.indexOf('@') !== -1;
+            const hasDot = userData.email.indexOf('.') !== -1;
 
             if (!hasAt || !hasDot) {
-                listErrors.push("User email invalid")
+                listErrors.push('User email invalid')
             } else {
                 //filters in database users with equal emails
                 const userWithSameEmail = await UserRepository.filter({
@@ -30,14 +30,14 @@ class UserService {
                 });
 
                 if (userWithSameEmail && userWithSameEmail.length) {
-                    listErrors.push("Already exists a user with this email.")
+                    listErrors.push('Already exists a user with this email.')
                 }
             }
         }
 
 
         if (!userData.password || !userData.password.trim()) {
-            listErrors.push("Invalid password")
+            listErrors.push('Invalid password')
         }
 
         const retorno = {

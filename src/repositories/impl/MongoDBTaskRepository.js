@@ -1,6 +1,6 @@
-const Task = require("../../models/Task");
-const TaskRepository = require("../TaskRepository");
-const StatusTask = require("../../enum/StatusTask");
+const Task = require('../../models/Task');
+const TaskRepository = require('../TaskRepository');
+const StatusTask = require('../../enum/StatusTask');
 
 const transformTask = (taskDB) => {
     return {

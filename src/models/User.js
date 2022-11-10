@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const md5 = require("md5");
+const md5 = require('md5');
 
-const errorMessageObligatory = "Obligatory field!";
+const errorMessageObligatory = 'Obligatory field!';
 const UserSchema = new Schema({
     name: {
         type: String,
@@ -19,12 +19,12 @@ const UserSchema = new Schema({
 });
 
 // defines an event that executes before the user is saved on the db
-UserSchema.pre("save", function (next) {
+UserSchema.pre('save', function (next) {
     // criptographs the password
     this.password = md5(this.password);
     next();
 });
 
 // makes the link of the schema with the collection
-const User = mongoose.model("users", UserSchema);
+const User = mongoose.model('users', UserSchema);
 module.exports = User;

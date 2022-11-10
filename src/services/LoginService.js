@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
-const md5 = require("md5")
-const UserRepository = require("../repositories/impl/MongoDBUserRepository")
+const jwt = require('jsonwebtoken');
+const md5 = require('md5')
+const UserRepository = require('../repositories/impl/MongoDBUserRepository')
 
 class LoginService {
     async login(login, password) {

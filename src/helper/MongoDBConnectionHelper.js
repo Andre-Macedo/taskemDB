@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 class MongoDBConnectionHelper {
     //defines  static method to connect to mongoDB
@@ -11,10 +11,10 @@ class MongoDBConnectionHelper {
         });
 
         //when connection is sucessful it gives the sucess message
-        mongoose.connection.on("connected", () => console.log("Connected to mongoDB"));
+        mongoose.connection.on('connected', () => console.log('Connected to mongoDB'));
 
         // when connection fails it gives the fail message
-        mongoose.connection.on("error", e => console.error("Failure to connect to mongoDB", e.message));
+        mongoose.connection.on('error', e => console.error('Failure to connect to mongoDB', e.message));
 
         return conexao;
 

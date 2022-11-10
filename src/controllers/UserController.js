@@ -1,5 +1,5 @@
-const HttpController = require("./HttpController");
-const UserService = require("../services/UserService");
+const HttpController = require('./HttpController');
+const UserService = require('../services/UserService');
 
 class UserController extends HttpController {
     configRoutes(baseUrl) {
@@ -20,18 +20,18 @@ class UserController extends HttpController {
                     .status(400)
                     .json({
                         status: 400,
-                        error: returnService.errors.join(", ")
+                        error: returnService.errors.join(', ')
                     })
             }
 
-            req.logger.info("user registered sucessfully");
+            req.logger.info('user registered sucessfully');
             res.json({
-                msg: "User created succesfully"
+                msg: 'User created succesfully'
             });
         } catch (error) {
-            req.logger.error("error to register user=" + error.message);
+            req.logger.error('error to register user=' + error.message);
             res.status(500).json({
-                error: "An error has ocurred while regsitering the user",
+                error: 'An error has ocurred while regsitering the user',
                 status: 500
             });
 

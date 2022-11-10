@@ -1,5 +1,5 @@
-const HttpController = require("./HttpController");
-const LoginService = require("../services/LoginService");
+const HttpController = require('./HttpController');
+const LoginService = require('../services/LoginService');
 
 class LoginController extends HttpController {
     //overwrites the method of the HttpController class.
@@ -17,11 +17,11 @@ class LoginController extends HttpController {
 
             //validates if the login and password fields were passed on the body
             if (!body || !body.login || !body.password) {
-                req.logger.info("login reques invalid.")
+                req.logger.info('login reques invalid.')
                 //returs an error saying that the login parameters are invalid
                 return res.status(400).json({
                     status: 400,
-                    error: "Invalid login parameters!"
+                    error: 'Invalid login parameters!'
                 });
             }
 
@@ -29,21 +29,21 @@ class LoginController extends HttpController {
             const result = await service.login(body.login, body.password);
             if (!result) {
                 return res.status(400).json({
-                    error: "Username or password invalid",
+                    error: 'Username or password invalid',
                     status: 400
                 })
             }
 
 
-            req.logger.info("Login request susscess", `result=${JSON.stringify(result)}`)
+            req.logger.info('Login request susscess', `result=${JSON.stringify(result)}`)
             //returns the login response mocked em json format
             res.json(result);
 
         } catch (e) {
-            req.logger.error("Error to log in, error" + e.message)
+            req.logger.error('Error to log in, error' + e.message)
             res.status(500).json({
                 status: 500,
-                error: "Failure to log in, try again later"
+                error: 'Failure to log in, try again later'
             })
         }
 

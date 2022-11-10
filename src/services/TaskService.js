@@ -1,4 +1,4 @@
-const TaskRepository = require("../repositories/impl/MongoDBTaskRepository")
+const TaskRepository = require('../repositories/impl/MongoDBTaskRepository')
 
 class TaskService {
     constructor(userId) {
@@ -13,16 +13,16 @@ class TaskService {
     async register(data) {
         const errors = [];
         if (!data) {
-            errors.push("Please send data to register the task")
+            errors.push('Please send data to register the task')
         } else {
             if (!data.name || !data.name.trim()) {
-                errors.push("Task name obligatory")
+                errors.push('Task name obligatory')
             } else if (data.name.length < 4) {
-                errors.push("Task name needs atleast 4 characters")
+                errors.push('Task name needs atleast 4 characters')
             }
 
             if (!data.scheduledDate || !data.scheduledDate.trim()) {
-                errors.push("Scheduled date is obligatory")
+                errors.push('Scheduled date is obligatory')
             }
         }
 
@@ -49,16 +49,16 @@ class TaskService {
     async edit(id, data) {
         const errors = []
         if (!id) {
-            errors.push("Task ID is obligatory");
+            errors.push('Task ID is obligatory');
         } else {
             const taskDB = await TaskRepository.searchById(id);
             // if task doesnt exist in the database or it belongs to another user
             if (!taskDB || taskDB.userId !== this.userId) {
-                errors.push("Task not found")
+                errors.push('Task not found')
             }
 
             if (data.name && data.name.trim() && data.name.trim().length < 4) {
-                errors.push("Name must have atleast 4 characters");
+                errors.push('Name must have atleast 4 characters');
             }
         }
 
@@ -87,25 +87,25 @@ class TaskService {
     }
 
     async delete(id) {
-        const errors = []
+        const errors = [];
         if (!id) {
-            errors.push("Task ID is obligatory");
+            errors.push('Task ID is obligatory');
         } else {
             const taskDB = await TaskRepository.searchById(id);
             // if task doesnt exist in the database or it belongs to another user
             if (!taskDB || taskDB.userId !== this.userId) {
-                errors.push("Task not found")
+                errors.push('Task not found');
             }
         }
 
         const response = { errors: null }
         if (errors.length) {
-            response.errors = errors
+            response.errors = errors;
         } else {
             await TaskRepository.delete(id);
         }
-
-        return response
+        console.log(response)
+        return response;
     }
 }
 

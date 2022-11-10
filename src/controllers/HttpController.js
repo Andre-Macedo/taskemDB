@@ -1,9 +1,9 @@
-const AppConstants = require("../enum/AppConstants");
+const AppConstants = require('../enum/AppConstants');
 
 class HttpController {
     constructor(instanceExpress) {
         if (!instanceExpress) {
-            throw new Error("Express instance is required!");
+            throw new Error('Express instance is required!');
         }
 
         this.express = instanceExpress;
@@ -11,7 +11,7 @@ class HttpController {
     }
 
     configRoutes(baseUrl) {
-        throw new Error("configRoutes method must be implemented!")
+        throw new Error('configRoutes method must be implemented!')
     }
 
 }

@@ -1,5 +1,5 @@
-const User = require("../../models/User");
-const UserRepository = require("../UserRepository");
+const User = require('../../models/User');
+const UserRepository = require('../UserRepository');
 
 const transformUser = (userDB) => {
     return {

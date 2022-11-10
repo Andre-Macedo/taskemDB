@@ -1,14 +1,14 @@
-const express = require("express");
-const LoginController = require("./controllers/LoginController");
-const UserController = require("./controllers/UserController");
-const TaskController = require("./controllers/TaskController")
-const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("./swagger/swagger.json");
-const AppConstants = require("./enum/AppConstants");
-const MongoDBConnectionHelper = require("./helper/MongoDBConnectionHelper")
+const express = require('express');
+const LoginController = require('./controllers/LoginController');
+const UserController = require('./controllers/UserController');
+const TaskController = require('./controllers/TaskController')
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger/swagger.json');
+const AppConstants = require('./enum/AppConstants');
+const MongoDBConnectionHelper = require('./helper/MongoDBConnectionHelper')
 
-const logger = require("./middlewares/logger")
-const jwt = require("./middlewares/jwt")
+const logger = require('./middlewares/logger')
+const jwt = require('./middlewares/jwt')
 const cors = require('./middlewares/cors');
 
 
