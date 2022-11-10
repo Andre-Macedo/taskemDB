@@ -1,6 +1,6 @@
-# Backend char-creation-app
+# Backend taskem-web-app
 
-Backend of the DnD 5e character creation app
+Backend of the Taskem web app
 
 ## Development enviroment setup
 
