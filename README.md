@@ -1,6 +1,6 @@
 # Backend taskem-web-app
 
-Backend of the Taskem web app
+Back-end for the Taskem web app. CRUD api built with Node.js, express, postman. Using MongoDB as the database. Documentation built with Swagger. 
 
 ## Development enviroment setup
 
